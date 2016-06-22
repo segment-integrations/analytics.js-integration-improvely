@@ -29,6 +29,14 @@ describe('Improvely', function() {
     sandbox();
   });
 
+  // FIXME(ndhoule): This block of code prevents post-test errors. Test cleanup
+  // should be fixed to render this unnecessary
+  after(function() {
+    window.improvely = {
+      identify: function() {}
+    };
+  });
+
   it('should have the right settings', function() {
     analytics.compare(Improvely, integration('Improvely')
       .assumesPageview()
